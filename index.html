@@ -527,14 +527,77 @@
     }
     footer a { color: #f8fafc; text-decoration: none; }
 
+    /* Мобильная нижняя панель быстрого вызова */
+    .mobile-quick-bar { display: none; }
+
+    .order-box {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 2px solid var(--ink);
+      padding: 40px;
+      box-shadow: 8px 8px 0 var(--blueprint);
+      background: #fff;
+    }
+
     @media (max-width: 960px) {
       .esd-frame, .contact-layout { grid-template-columns: 1fr; }
       .esd-main { border-right: none; border-bottom: 2px solid var(--ink); }
-      .parts-grid { grid-template-columns: 1fr 1fr; }
       .nav-menu { display: none; }
     }
+
     @media (max-width: 640px) {
-      .parts-grid, .esd-guarantees { grid-template-columns: 1fr; }
+      .container { padding: 0 16px; }
+      .top-bar-inner { font-size: 11px; text-align: center; justify-content: center; }
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
+      .header-cta-btn { display: none; }
+      .esd-main { padding: 24px 16px; }
+      .esd-guarantees { grid-template-columns: 1fr; gap: 12px; }
+      .drawing-area { padding: 16px 12px; }
+      .gost-stamp { grid-template-columns: 1fr 1fr; }
+      .gost-cell:nth-child(2n) { border-right: none; }
+      .contact-box { padding: 22px 16px; }
+      .order-box { padding: 22px 16px; }
+      .map-embed { height: 300px; }
+      
+      body {
+        padding-bottom: 58px; /* Место под фиксированную мобильную плашку */
+      }
+      .mobile-quick-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(15, 23, 42, 0.98);
+        border-top: 2px solid var(--ink);
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+      }
+      .mobile-quick-btn {
+        padding: 13px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+      }
+      .mobile-quick-btn.call {
+        background: var(--blueprint);
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .mobile-quick-btn.wa {
+        background: #16a34a;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .logo-text strong { font-size: 16px; }
+      .logo-stamp { font-size: 14px; padding: 4px 8px; }
     }
   </style>
 </head>
@@ -575,7 +638,7 @@
           <a href="tel:+77772512009" style="color:var(--ink); font-weight:700; text-decoration:none; font-size:16px;">+7 777 251 2009</a>
           <small style="display:block; font-size:11px; color:#16a34a;">● Отдел приёма заказов / WhatsApp</small>
         </div>
-        <a href="#order" class="btn-esd btn-blue">Расчёт по чертежу</a>
+        <a href="#order" class="btn-esd btn-blue header-cta-btn">Расчёт по чертежу</a>
       </div>
     </div>
   </header>
@@ -747,7 +810,7 @@
   <!-- Форма отправки чертежа -->
   <section id="order" style="background:var(--surface);">
     <div class="container">
-      <div style="max-width:760px; margin:0 auto; border:2px solid var(--ink); padding:40px; box-shadow:8px 8px 0 var(--blueprint); background:#fff;">
+      <div class="order-box">
         <span class="sec-index">// Онлайн-расчёт</span>
         <h2 class="sec-title" style="margin-bottom:14px;">Отправить заявку или чертёж технологу</h2>
         <p style="color:var(--ink-muted); margin-bottom:24px; font-size:15px;">
@@ -785,6 +848,16 @@
     </div>
   </footer>
 
+
+  <!-- Мобильная фиксированная плашка быстрого вызова / WhatsApp -->
+  <div class="mobile-quick-bar">
+    <a href="tel:+77772512009" class="mobile-quick-btn call">
+      <span>📞 Позвонить</span>
+    </a>
+    <a href="https://wa.me/77772512009" target="_blank" rel="noopener" class="mobile-quick-btn wa">
+      <span>💬 Написать в WhatsApp</span>
+    </a>
+  </div>
 
 </body>
 </html>
