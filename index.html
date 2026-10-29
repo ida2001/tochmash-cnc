@@ -34,6 +34,7 @@
     "taxID": "930740000018",
     "description": "Производство крепежных, резьбовых изделий, токарная обработка деталей по чертежам и изготовление строительных металлоконструкций в Алматы.",
     "telephone": "+77772512009",
+    "email": "trud93@yandex.ru",
     "url": "https://trud-almaty.pages.dev/",
     "address": {
       "@type": "PostalAddress",
@@ -538,6 +539,12 @@
       box-shadow: 8px 8px 0 var(--blueprint);
       background: #fff;
     }
+    .order-buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
     @media (max-width: 960px) {
       .esd-frame, .contact-layout { grid-template-columns: 1fr; }
@@ -557,6 +564,7 @@
       .gost-cell:nth-child(2n) { border-right: none; }
       .contact-box { padding: 22px 16px; }
       .order-box { padding: 22px 16px; }
+      .order-buttons-grid { grid-template-columns: 1fr; }
       .map-embed { height: 300px; }
       
       body {
@@ -610,6 +618,8 @@
         <span>БИН: <strong>930740000018</strong></span>
         <span style="margin: 0 10px;">|</span>
         <span>г. Алматы, Жетысуский р-н, ул. Павлодарская, 7</span>
+        <span style="margin: 0 10px;">|</span>
+        <span>Email: <a href="mailto:trud93@yandex.ru" style="color:inherit; text-decoration:none;"><strong>trud93@yandex.ru</strong></a></span>
       </div>
       <div>
         <span>Режим: <strong>Пн–Пт 08:00–17:00</strong> (Сб–Вс: выходной)</span>
@@ -770,6 +780,16 @@
           </div>
 
           <div class="contact-item">
+            <span class="contact-label">Электронная почта для заявок и чертежей</span>
+            <div class="contact-val">
+              <a href="mailto:trud93@yandex.ru" style="color:var(--blueprint); text-decoration:none; font-weight:700;">trud93@yandex.ru</a>
+            </div>
+            <div style="font-size:13px; color:var(--ink-muted); margin-top:4px;">
+              Принимаем технические задания и чертежи (PDF, DWG, DXF, фото)
+            </div>
+          </div>
+
+          <div class="contact-item">
             <span class="contact-label">График работы</span>
             <div class="contact-val">Понедельник – пятница: с 08:00 до 17:00</div>
             <div style="font-size:13px; color:#dc2626; margin-top:2px; font-weight:600;">
@@ -814,17 +834,28 @@
           Заполните форму, укажите нужные изделия или прикрепите чертёж (PDF, DWG, DXF, фото). Инженеры ТОО «Труд» рассчитают стоимость и сроки производства.
         </p>
 
-        <form onsubmit="event.preventDefault(); document.getElementById('orderNotice').style.display='block';">
-          <input type="text" class="esd-input" placeholder="Название организации / Ваше имя *" required />
-          <input type="tel" class="esd-input" placeholder="Контактный телефон (WhatsApp) *" required />
-          <textarea class="esd-input" rows="4" placeholder="Перечень изделий: марка стали, диаметры, ГОСТ, количество штук, требования к срокам..."></textarea>
+        <form id="orderForm" onsubmit="event.preventDefault(); submitOrder('whatsapp');">
+          <input type="text" id="orderName" class="esd-input" placeholder="Название организации / Ваше имя *" required />
+          <input type="tel" id="orderPhone" class="esd-input" placeholder="Контактный телефон (WhatsApp) *" required />
+          <textarea id="orderComment" class="esd-input" rows="4" placeholder="Перечень изделий: марка стали, диаметры, ГОСТ, количество штук, требования к срокам..."></textarea>
           <div style="border:2px dashed var(--border-strong); padding:14px; margin-bottom:16px; background:var(--paper); font-size:13px;">
-            📎 Прикрепить чертёж или спецификацию: <input type="file" style="margin-top:6px; display:block;" />
+            📎 <strong>Прикрепить чертёж или спецификацию:</strong>
+            <input type="file" id="orderFile" style="margin-top:6px; display:block;" onchange="handleFileSelect(this)" />
+            <div id="fileNotice" style="display:none; margin-top:8px; color:var(--blueprint); font-weight:600; font-family:var(--mono); font-size:12px;"></div>
           </div>
-          <button type="submit" class="btn-esd btn-blue" style="width:100%; font-size:15px;">Отправить заявку на производство</button>
-          <p id="orderNotice" style="display:none; margin-top:14px; color:#16a34a; font-family:var(--mono); font-size:14px; font-weight:700;">
-            ✓ Ваша заявка успешно передана в отдел расчёта ТОО «Труд». Мы свяжемся с вами в рабочее время (Пн–Пт с 08:00 до 17:00).
-          </p>
+          <div class="order-buttons-grid">
+            <button type="button" onclick="submitOrder('whatsapp')" class="btn-esd" style="background:#16a34a; border-color:#15803d; color:#fff; font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span>💬 Отправить в WhatsApp (+7 777 251 2009)</span>
+            </button>
+            <button type="button" onclick="submitOrder('email')" class="btn-esd btn-blue" style="font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span>✉️ Отправить на Email (trud93@yandex.ru)</span>
+            </button>
+          </div>
+          <div style="text-align:center; font-family:var(--mono); font-size:12px; color:var(--ink-muted); margin-top:10px;">
+            Или напрямую: WhatsApp <a href="https://wa.me/77772512009" target="_blank" rel="noopener" style="color:#16a34a; font-weight:700;">+7 777 251 2009</a> • Почта: <a href="mailto:trud93@yandex.ru" style="color:var(--blueprint); font-weight:700;">trud93@yandex.ru</a>
+          </div>
+          <div id="orderNotice" style="display:none; margin-top:14px; padding:14px; border:2px solid #16a34a; background:#f0fdf4; color:#15803d; font-family:var(--mono); font-size:13px; font-weight:700; line-height:1.5;">
+          </div>
         </form>
       </div>
     </div>
@@ -836,7 +867,7 @@
       <div>
         <strong>ТОО «Труд»</strong> • БИН: 930740000018<br/>
         г. Алматы, Жетысуский район, ул. Павлодарская, 7 (индекс 050014)<br/>
-        Телефон: <a href="tel:+77772512009">+7 777 251 2009</a> • Пн–Пт 08:00–17:00
+        Телефон: <a href="tel:+77772512009">+7 777 251 2009</a> • Email: <a href="mailto:trud93@yandex.ru">trud93@yandex.ru</a> • Пн–Пт 08:00–17:00
       </div>
       <div style="text-align:right;">
         Производство крепежных, резьбовых изделий и металлоконструкций.<br/>
@@ -856,5 +887,81 @@
     </a>
   </div>
 
+  <script>
+    function handleFileSelect(input) {
+      var notice = document.getElementById('fileNotice');
+      if (input.files && input.files[0]) {
+        notice.style.display = 'block';
+        notice.innerHTML = '📎 Файл выбран: <strong>' + input.files[0].name + '</strong> (' + (input.files[0].size / 1024).toFixed(1) + ' КБ).<br/>Он будет готов для отправки в диалог WhatsApp или во вложение к письму.';
+      } else {
+        notice.style.display = 'none';
+      }
+    }
+
+    function submitOrder(channel) {
+      var nameInput = document.getElementById('orderName');
+      var phoneInput = document.getElementById('orderPhone');
+      var commentInput = document.getElementById('orderComment');
+      var fileInput = document.getElementById('orderFile');
+      var notice = document.getElementById('orderNotice');
+
+      var name = nameInput.value.trim();
+      var phone = phoneInput.value.trim();
+      var comment = commentInput.value.trim();
+      var hasFile = fileInput.files && fileInput.files[0];
+      var fileName = hasFile ? fileInput.files[0].name : '';
+
+      if (!name) {
+        alert('Пожалуйста, укажите название вашей организации или имя.');
+        nameInput.focus();
+        return;
+      }
+      if (!phone) {
+        alert('Пожалуйста, укажите контактный телефон.');
+        phoneInput.focus();
+        return;
+      }
+
+      if (channel === 'whatsapp') {
+        var text = 'Здравствуйте! Заявка на расчёт с сайта ТОО «Труд» (Алматы):\n\n' +
+          '• Заказчик: ' + name + '\n' +
+          '• Телефон: ' + phone + '\n';
+        if (comment) {
+          text += '• Перечень изделий / ТЗ:\n' + comment + '\n';
+        }
+        if (hasFile) {
+          text += '• Чертёж: прикрепляю файл (' + fileName + ') в этот чат\n';
+        }
+        text += '\nПрошу рассчитать стоимость и сроки изготовления.';
+
+        var waUrl = 'https://wa.me/77772512009?text=' + encodeURIComponent(text);
+        window.open(waUrl, '_blank');
+
+        notice.style.display = 'block';
+        notice.innerHTML = '✓ Чат WhatsApp (+7 777 251 2009) открыт с заполненными параметрами заявки!' +
+          (hasFile ? '<br/>Пожалуйста, прикрепите выбранный чертёж (<strong>' + fileName + '</strong>) прямо в открывшийся чат WhatsApp.' : '');
+      } else if (channel === 'email') {
+        var subject = 'Заявка на расчет металлоизделий — ' + name;
+        var body = 'Здравствуйте, отдел расчёта ТОО «Труд»!\n\n' +
+          'Прошу рассчитать стоимость и сроки изготовления следующих изделий:\n\n' +
+          'Организация / Заказчик: ' + name + '\n' +
+          'Контактный телефон: ' + phone + '\n\n';
+        if (comment) {
+          body += 'Перечень изделий, марка стали, требования:\n' + comment + '\n\n';
+        }
+        if (hasFile) {
+          body += 'Файл чертежа/спецификации (' + fileName + ') прикрепляю к этому письму.\n\n';
+        }
+        body += '--\nЗаявка отправлена с сайта ТОО «Труд» (trud-almaty.pages.dev)';
+
+        var mailtoUrl = 'mailto:trud93@yandex.ru?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailtoUrl;
+
+        notice.style.display = 'block';
+        notice.innerHTML = '✓ Открыта почтовая программа для отправки письма на <strong>trud93@yandex.ru</strong>!' +
+          (hasFile ? '<br/>Прикрепите файл чертежа (<strong>' + fileName + '</strong>) к письму и нажмите «Отправить».' : '');
+      }
+    }
+  </script>
 </body>
 </html>
