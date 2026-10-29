@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>КБ ТОЧМАШ — Токарно-фрезерное производство | Вариант 2 (Инженерное КБ)</title>
+  <meta name="description" content="Прецизионная токарная и фрезерная обработка металла по ГОСТ и ISO. Изготовление деталей по чертежам и образцам." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --ink: #0f172a;
+      --ink-muted: #475569;
+      --blueprint: #1d4ed8;
+      --blueprint-dark: #1e3a8a;
+      --blueprint-soft: #eff6ff;
+      --callout: #dc2626;
+      --border: #cbd5e1;
+      --border-strong: #1e293b;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      background-image:
+        linear-gradient(to right, rgba(29, 78, 216, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 78, 216, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Верхняя панель переключения вариантов */
+    .variant-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .variant-bar-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .variant-pill {
+      padding: 5px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      font-family: var(--mono);
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .variant-pill:hover { color: #fff; border-color: #64748b; }
+    .variant-pill.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #3b82f6;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Шапка в стиле инженерного бюро */
+    header {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--ink);
+      position: sticky;
+      top: 43px;
+      z-index: 90;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .logo-stamp {
+      border: 2px solid var(--ink);
+      background: var(--blueprint);
+      color: #fff;
+      font-family: var(--mono);
+      font-weight: 700;
+      padding: 6px 10px;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+    }
+    .logo-text strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .logo-text span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-menu a:hover { color: var(--blueprint); }
+
+    .btn-esd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: var(--sans);
+    }
+    .btn-blue {
+      background: var(--blueprint);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .btn-blue:hover {
+      background: var(--blueprint-dark);
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .btn-white {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 4px 4px 0 var(--border);
+    }
+    .btn-white:hover {
+      border-color: var(--blueprint);
+      color: var(--blueprint);
+    }
+
+    /* Hero в стиле чертежа ЕСКД */
+    .hero-esd {
+      padding: 60px 0 72px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .esd-frame {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(15, 23, 42, 0.08);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+    .esd-main {
+      padding: 48px;
+      border-right: 2px solid var(--ink);
+    }
+    .esd-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blueprint);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: var(--blueprint-soft);
+      padding: 4px 10px;
+      border: 1px solid #bfdbfe;
+    }
+    .esd-main h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+    .esd-main p {
+      font-size: 16px;
+      color: var(--ink-muted);
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+    .esd-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .esd-guarantees {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+    .esd-guarantees div strong {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--blueprint);
+      display: block;
+    }
+    .esd-guarantees div span {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Правая колонка с чертежом и штампом ГОСТ */
+    .esd-drawing {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(to right, rgba(29,78,216,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29,78,216,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .drawing-area {
+      padding: 32px;
+      flex: 1;
+      display: grid;
+      place-items: center;
+    }
+    .gost-stamp {
+      border-top: 2px solid var(--ink);
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .gost-cell {
+      padding: 10px 12px;
+      border-right: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+    .gost-cell:nth-child(3n) { border-right: none; }
+    .gost-cell small {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+    .gost-cell strong {
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    /* Секции */
+    section {
+      padding: 76px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .sec-index {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blueprint);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .sec-title {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    /* Интерактивный каталог деталей с фильтром */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .tab-btn {
+      padding: 9px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink-muted);
+      transition: all 0.15s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .part-card {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .part-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    .part-code {
+      color: var(--blueprint);
+      font-weight: 700;
+    }
+    .part-card h3 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .part-card p {
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+    .part-meta {
+      background: var(--surface-alt);
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Таблица технологических допусков и материалов */
+    .tech-table-wrap {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      overflow-x: auto;
+    }
+    table.tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    .tech-table th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      padding: 14px 18px;
+    }
+    .tech-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tech-table tr:hover td {
+      background: var(--blueprint-soft);
+    }
+    .mono-badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--surface-alt);
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    /* Форма заказа в рамке КБ */
+    .order-frame {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--blueprint);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .esd-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--border-strong);
+      font-family: var(--sans);
+      font-size: 14px;
+      margin-bottom: 14px;
+      background: var(--paper);
+    }
+    .esd-input:focus {
+      outline: none;
+      border-color: var(--blueprint);
+      background: #fff;
+    }
+
+    footer {
+      padding: 36px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 960px) {
+      .esd-frame, .order-frame { grid-template-columns: 1fr; }
+      .esd-main { border-right: none; border-bottom: 2px solid var(--ink); }
+      .parts-grid { grid-template-columns: 1fr 1fr; }
+      .nav-menu { display: none; }
+    }
+    @media (max-width: 640px) {
+      .parts-grid, .esd-guarantees { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Панель переключения вариантов дизайна -->
+  <div class="variant-bar">
+    <div>
+      <strong>Демо дизайна сайта токарного цеха:</strong>
+      <span style="color:#94a3b8; margin-left:8px;">Светлый инженерный стиль (КБ / Чертёж ГОСТ / B2B)</span>
+    </div>
+    <div class="variant-bar-links">
+      <a href="index.html" class="variant-pill">Все варианты</a>
+      <a href="variant-1.html" class="variant-pill">01. Industrial Dark</a>
+      <a href="variant-2.html" class="variant-pill active">02. Инженерное КБ (Светлый)</a>
+    </div>
+  </div>
+
+  <!-- Навигация -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-stamp">КБ-ТМ</div>
+        <div class="logo-text">
+          <strong>ТОЧМАШ-ИНЖИНИРИНГ</strong>
+          <span>ЦЕХ ТОКАРНОЙ И ФРЕЗЕРНОЙ ОБРАБОТКИ</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#catalog">Номенклатура деталей</a></li>
+        <li><a href="#specs">Таблица возможностей</a></li>
+        <li><a href="#workflow">Порядок работы</a></li>
+        <li><a href="#order">Отправить чертёж</a></li>
+      </ul>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div style="text-align:right; font-family:var(--mono);">
+          <a href="tel:+77001234567" style="color:var(--ink); font-weight:700; text-decoration:none; font-size:15px;">+7 (700) 123-45-67</a>
+          <small style="display:block; font-size:11px; color:var(--blueprint);">Отдел главного технолога</small>
+        </div>
+        <a href="#order" class="btn-esd btn-blue">Заявка на расчёт</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Главный блок в рамке чертежа -->
+  <section class="hero-esd">
+    <div class="container">
+      <div class="esd-frame">
+        <div class="esd-main">
+          <span class="esd-code">ДОПУСК ПО ГОСТ 25346-89 / ISO 286 • КВАЛИТЕТ IT6–IT8</span>
+          <h1>Изготовление деталей вращения и корпусных узлов по чертежам</h1>
+          <p>
+            Производственная база токарных автоматов с ЧПУ, фрезерных центров и универсальных станков. Выпускаем детали для машиностроения, горнодобывающей отрасли, сельхозтехники и гидравлики с паспортом качества ОТК.
+          </p>
+          <div class="esd-actions">
+            <a href="#order" class="btn-esd btn-blue">Прикрепить чертёж для расчёта</a>
+            <a href="#catalog" class="btn-esd btn-white">Смотреть каталог изделий</a>
+          </div>
+          <div class="esd-guarantees">
+            <div>
+              <strong>30 мин</strong>
+              <span>Расчёт КП по вашему чертежу или эскизу</span>
+            </div>
+            <div>
+              <strong>100% ОТК</strong>
+              <span>Контроль посадок микрометрами и калибрами</span>
+            </div>
+            <div>
+              <strong>НДС / Договор</strong>
+              <span>Полный комплект закрывающих документов</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="esd-drawing">
+          <div class="drawing-area">
+            <!-- Чертёж фланцевой втулки в синих линиях ЕСКД -->
+            <svg viewBox="0 0 420 260" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Осевая штрихпунктирная -->
+              <line x1="20" y1="130" x2="400" y2="130" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="16 5 3 5"/>
+              <line x1="210" y1="20" x2="210" y2="240" stroke="#dc2626" stroke-width="1" stroke-dasharray="12 4 2 4" opacity="0.5"/>
+              <!-- Внешний контур фланца в разрезе -->
+              <path d="M90 50 H160 V85 H320 V110 H90 Z" fill="rgba(29, 78, 216, 0.08)" stroke="#0f172a" stroke-width="2.2"/>
+              <path d="M90 210 H160 V175 H320 V150 H90 Z" fill="rgba(29, 78, 216, 0.08)" stroke="#0f172a" stroke-width="2.2"/>
+              <line x1="90" y1="110" x2="90" y2="150" stroke="#0f172a" stroke-width="2.2"/>
+              <line x1="320" y1="110" x2="320" y2="150" stroke="#0f172a" stroke-width="2.2"/>
+              <!-- Выносные размерные линии -->
+              <line x1="90" y1="25" x2="320" y2="25" stroke="#1d4ed8" stroke-width="1.2"/>
+              <line x1="90" y1="50" x2="90" y2="20" stroke="#1d4ed8" stroke-width="1"/>
+              <line x1="320" y1="85" x2="320" y2="20" stroke="#1d4ed8" stroke-width="1"/>
+              <text x="170" y="19" fill="#1d4ed8" font-family="IBM Plex Mono" font-weight="600" font-size="12">230 ±0.1</text>
+
+              <line x1="355" y1="85" x2="355" y2="175" stroke="#1d4ed8" stroke-width="1.2"/>
+              <line x1="320" y1="85" x2="362" y2="85" stroke="#1d4ed8" stroke-width="1"/>
+              <line x1="320" y1="175" x2="362" y2="175" stroke="#1d4ed8" stroke-width="1"/>
+              <text x="364" y="134" fill="#1d4ed8" font-family="IBM Plex Mono" font-weight="600" font-size="11">Ø95k6</text>
+
+              <text x="102" y="125" fill="#dc2626" font-family="IBM Plex Mono" font-weight="600" font-size="11">Ø50 H7 (+0.025)</text>
+            </svg>
+          </div>
+
+          <!-- Основная надпись (Штамп ГОСТ) -->
+          <div class="gost-stamp">
+            <div class="gost-cell">
+              <small>Деталь</small>
+              <strong>Корпус подшипника</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Материал</small>
+              <strong>Сталь 40Х ГОСТ 4543</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Шероховатость</small>
+              <strong>Ra 1.25 / Ra 0.8</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Масса</small>
+              <strong>4.85 кг</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Масштаб</small>
+              <strong>1 : 1</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Статус ОТК</small>
+              <strong style="color:#16a34a;">ГОДЕН</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Интерактивный каталог выпускаемых деталей -->
+  <section id="catalog">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="sec-index">Раздел 01 // Номенклатура изделий</span>
+          <h2 class="sec-title">Типовые детали, которые мы точим и фрезеруем</h2>
+        </div>
+      </div>
+
+      <div class="filter-tabs" id="partTabs">
+        <button class="tab-btn active" data-cat="all">Все категории (6)</button>
+        <button class="tab-btn" data-cat="shafts">Валы, оси и штоки</button>
+        <button class="tab-btn" data-cat="bushings">Втулки, пальцы, фланцы</button>
+        <button class="tab-btn" data-cat="gears">Шестерни и резьбовые детали</button>
+      </div>
+
+      <div class="parts-grid" id="partsGrid">
+        <div class="part-card" data-cat="shafts">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-101 // ВАЛЫ</span>
+              <span>ЧПУ + Шлифовка</span>
+            </div>
+            <h3>Приводные и шлицевые валы</h3>
+            <p>Ступенчатые валы редукторов, насосов и электродвигателей с нарезкой шлицев, шпоночных пазов и закалкой посадочных шеек под подшипники.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Сталь:</strong> 40Х, 40ХН2МА</div>
+            <div><strong>Длина:</strong> до 2000 мм</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="bushings">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-102 // ВТУЛКИ</span>
+              <span>Серии до 5000 шт.</span>
+            </div>
+            <h3>Втулки скольжения и пальцы</h3>
+            <p>Бронзовые, латунные, стальные закалённые и капролоновые втулки со смазочными канавками для спецтехники, экскаваторов и станочных узлов.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Материал:</strong> БрАЖ9-4, Ст45</div>
+            <div><strong>Допуск:</strong> H7 / h6</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="bushings">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-103 // ФЛАНЦЫ</span>
+              <span>Токарно-фрезерная</span>
+            </div>
+            <h3>Фланцы, крышки, переходники</h3>
+            <p>Плоские и воротниковые фланцы по ГОСТ и нестандартным чертежам, корпуса сальников, ступицы и переходные плиты с координатной сверловкой.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Сталь:</strong> 09Г2С, 12Х18Н10Т</div>
+            <div><strong>Диаметр:</strong> до Ø630 мм</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="gears">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-104 // ПЕРЕДАЧИ</span>
+              <span>Зубообработка + ТВЧ</span>
+            </div>
+            <h3>Шестерни, звёздочки, шкивы</h3>
+            <p>Цилиндрические прямозубые шестерни, приводные звёздочки под цепи ПР, многоручьевые клиновые шкивы с расточкой и долблением шпоночного паза.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Твёрдость:</strong> 48–56 HRC</div>
+            <div><strong>Модуль:</strong> m 1.5 – m 8</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="gears">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-105 // ГИДРАВЛИКА</span>
+              <span>Автоматы ЧПУ</span>
+            </div>
+            <h3>Штуцеры, ниппели, спецкрепёж</h3>
+            <p>Точение нестандартных болтов, шпилек, гаек, гидравлических переходников с метрической, трубной (BSP) и конической (NPT) резьбой.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Класс прочн.:</strong> 8.8 / 10.9</div>
+            <div><strong>Партия:</strong> от 10 до 10 000</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="shafts">
+          <div>
+            <div class="part-header">
+              <span class="part-code">КД-106 // ВИНТЫ</span>
+              <span>Трапецеидальная резьба</span>
+            </div>
+            <h3>Ходовые винты и гайки</h3>
+            <p>Изготовление грузовых и ходовых пар (винт трапецеидальный Tr + бронзовая или капролоновая гайка) для прессов, задвижек и подъёмников.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Профиль:</strong> Tr16 – Tr80</div>
+            <div><strong>Заходы:</strong> 1 / 2 / 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Таблица паспортных возможностей цеха -->
+  <section id="specs">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="sec-index">Раздел 02 // Паспорт технологических возможностей</span>
+          <h2 class="sec-title">Параметры обработки и склад металла</h2>
+        </div>
+      </div>
+
+      <div class="tech-table-wrap">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Технологическая операция</th>
+              <th>Рабочий диапазон</th>
+              <th>Точность / Шероховатость</th>
+              <th>Обрабатываемые материалы в наличии</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Токарная обработка на ЧПУ</strong></td>
+              <td>Ø от 4 до 500 мм, L до 1000 мм</td>
+              <td><span class="mono-badge">±0.005 мм (IT6) / Ra 0.8</span></td>
+              <td>Сталь 20, 45, 40Х, 09Г2С, 12Х18Н10Т</td>
+            </tr>
+            <tr>
+              <td><strong>Токарно-винторезная (универсальная)</strong></td>
+              <td>Ø до 630 мм над станиной, РМЦ 2000 мм</td>
+              <td><span class="mono-badge">±0.02 мм / Ra 1.6</span></td>
+              <td>Поковки, кругляк, трубы, чугун СЧ20</td>
+            </tr>
+            <tr>
+              <td><strong>Фрезерная обработка ЧПУ (3–4 оси)</strong></td>
+              <td>1000 × 500 × 500 мм</td>
+              <td><span class="mono-badge">±0.01 мм / Ra 1.25</span></td>
+              <td>Д16Т, АМг6, В95, БрАЖ, латунь ЛС59</td>
+            </tr>
+            <tr>
+              <td><strong>Инженерные пластики и полимеры</strong></td>
+              <td>Ø до 400 мм, листовой раскрой</td>
+              <td><span class="mono-badge">±0.03 мм / Ra 1.6</span></td>
+              <td>Капролон (ПА-6), Фторопласт (Ф-4), ПОМ-С, текстолит</td>
+            </tr>
+            <tr>
+              <td><strong>Круглая и плоская шлифовка + Термообработка</strong></td>
+              <td>Ø до 320 мм, L до 1000 мм</td>
+              <td><span class="mono-badge">±0.003 мм / Ra 0.4 • до 62 HRC</span></td>
+              <td>Цементация 18ХГТ, закалка ТВЧ, объёмная закалка</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма заявки -->
+  <section id="order">
+    <div class="container">
+      <div class="order-frame">
+        <div>
+          <span class="sec-index">Раздел 03 // Стол заказов</span>
+          <h2 class="sec-title" style="margin-bottom:16px;">Передайте чертёж на расчёт технологу</h2>
+          <p style="color:var(--ink-muted); margin-bottom:24px;">
+            В течение 30 минут подготовим спецификацию со стоимостью и сроками изготовления. Если чертежа нет — пришлите фото детали рядом с линейкой или штангенциркулем.
+          </p>
+          <div style="background:var(--surface-alt); border-left:4px solid var(--blueprint); padding:16px; font-size:14px; margin-bottom:20px;">
+            <strong>Прямые контакты цеха:</strong><br/>
+            Тел. / WhatsApp: <strong>+7 (700) 123-45-67</strong><br/>
+            Email для чертежей: <strong>zakaz@tochmash-cnc.kz</strong><br/>
+            Режим работы: <strong>Пн–Сб с 08:00 до 20:00</strong>
+          </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); document.getElementById('esdMsg').style.display='block';">
+          <input type="text" class="esd-input" placeholder="ФИО / Название компании *" required />
+          <input type="tel" class="esd-input" placeholder="Контактный телефон (WhatsApp) *" required />
+          <textarea class="esd-input" rows="3" placeholder="Наименование детали, материал, количество штук..."></textarea>
+          <div style="border:2px dashed var(--border-strong); padding:12px; margin-bottom:14px; font-size:13px; background:var(--paper);">
+            Чертёж (PDF, DWG, STEP, фото): <input type="file" style="margin-top:6px;" />
+          </div>
+          <button type="submit" class="btn-esd btn-blue" style="width:100%;">Отправить документацию в расчёт</button>
+          <p id="esdMsg" style="display:none; margin-top:12px; color:#16a34a; font-family:var(--mono); font-size:13px; font-weight:600;">
+            [ОК] Заявка зарегистрирована в отделе главного технолога.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <div>© 2026 КБ «ТОЧМАШ-ИНЖИНИРИНГ» • Токарно-фрезерные работы по ГОСТ и ISO</div>
+      <div>Дизайн: Вариант 2 (Инженерное КБ / Blueprint)</div>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('#partTabs .tab-btn');
+    const cards = document.querySelectorAll('#partsGrid .part-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        cards.forEach(card => {
+          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
