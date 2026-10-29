@@ -1,207 +1,961 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Выбор дизайна сайта — Токарно-фрезерный цех (2 варианта)</title>
+  
+  <!-- SEO Основные мета-теги -->
+  <title>ТОО «Труд» Алматы | Токарные работы, крепёж, резьбовые изделия и металлоконструкции по чертежам</title>
+  <meta name="description" content="ТОО «Труд» (БИН 930740000018) — производственное предприятие в Алматы. Изготовление крепежа, фундаментных болтов ГОСТ 24379.1, резьбовых соединений, токарная обработка металла по чертежам заказчика и металлоконструкции. Адрес: ул. Павлодарская, 7. Тел: +7 (727) 384-7655." />
+  <meta name="keywords" content="ТОО Труд Алматы, токарные работы Алматы, изготовление крепежа Алматы, фундаментные болты ГОСТ 24379.1, резьбовые изделия, металлообработка Алматы, металлоконструкции на заказ, токарный цех Павлодарская 7, анкерные болты, закладные детали, шпильки ГОСТ" />
+  <meta name="robots" content="index, follow" />
+  <meta name="geo.region" content="KZ-ALA" />
+  <meta name="geo.placename" content="Алматы" />
+  <meta name="geo.position" content="43.3245;76.9388" />
+  <meta name="ICBM" content="43.3245, 76.9388" />
+  <link rel="canonical" href="https://dealing-promises-diamond-crafts.trycloudflare.com/" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="business.business" />
+  <meta property="og:title" content="ТОО «Труд» — Металлообработка, крепёж и металлоконструкции в Алматы" />
+  <meta property="og:description" content="Производство крепежных, резьбовых изделий, металлоизделий и металлоконструкций на заказ по чертежам клиента. Промзона Алматы, ул. Павлодарская, 7." />
+  <meta property="og:url" content="https://dealing-promises-diamond-crafts.trycloudflare.com/" />
+  <meta property="og:site_name" content="ТОО «Труд»" />
+  <meta property="og:locale" content="ru_KZ" />
+
+  <!-- Schema.org Микроразметка для поисковиков (Google, Яндекс) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ТОО «Труд»",
+    "legalName": "Товарищество с ограниченной ответственностью «Труд»",
+    "image": "https://dealing-promises-diamond-crafts.trycloudflare.com/assets/logo.png",
+    "taxID": "930740000018",
+    "description": "Производство крепежных, резьбовых изделий, токарная обработка деталей по чертежам и изготовление строительных металлоконструкций в Алматы.",
+    "telephone": "+77273847655",
+    "url": "https://dealing-promises-diamond-crafts.trycloudflare.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Павлодарская, дом 7",
+      "addressLocality": "Алматы",
+      "addressRegion": "Жетысуский район",
+      "postalCode": "050014",
+      "addressCountry": "KZ"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.3245,
+      "longitude": 76.9388
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "$$"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #0b0f17;
-      color: #f1f5f9;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    :root {
+      --paper: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --ink: #0f172a;
+      --ink-muted: #475569;
+      --blueprint: #1d4ed8;
+      --blueprint-dark: #1e3a8a;
+      --blueprint-soft: #eff6ff;
+      --callout: #dc2626;
+      --border: #cbd5e1;
+      --border-strong: #1e293b;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    .top-header {
-      padding: 28px 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      background-image:
+        linear-gradient(to right, rgba(29, 78, 216, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 78, 216, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Верхняя информационная плашка ГОСТ/БИН */
+    .top-bar {
+      background: var(--ink);
+      color: #94a3b8;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid #334155;
+    }
+    .top-bar-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-      background: #0f1520;
+      gap: 10px;
     }
-    .top-header h1 {
-      font-size: 22px;
+    .top-bar strong { color: #f8fafc; }
+
+    /* Шапка в стиле инженерного бюро */
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--ink);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .logo-stamp {
+      border: 2px solid var(--ink);
+      background: var(--blueprint);
+      color: #fff;
+      font-family: var(--mono);
+      font-weight: 700;
+      padding: 6px 10px;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+    }
+    .logo-text strong {
+      display: block;
+      font-size: 19px;
       font-weight: 800;
+      letter-spacing: -0.02em;
     }
-    .top-header p {
+    .logo-text span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
       font-size: 14px;
-      color: #94a3b8;
-      margin-top: 4px;
+      transition: color 0.15s;
     }
-    .cards-wrap {
-      max-width: 1280px;
-      margin: 40px auto;
-      padding: 0 24px;
+    .nav-menu a:hover { color: var(--blueprint); }
+
+    .btn-esd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: var(--sans);
+    }
+    .btn-blue {
+      background: var(--blueprint);
+      color: #fff;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .btn-blue:hover {
+      background: var(--blueprint-dark);
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .btn-white {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 4px 4px 0 var(--border);
+    }
+    .btn-white:hover {
+      border-color: var(--blueprint);
+      color: var(--blueprint);
+    }
+
+    /* Hero */
+    .hero-esd {
+      padding: 56px 0 68px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .esd-frame {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(15, 23, 42, 0.08);
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+    }
+    .esd-main {
+      padding: 44px;
+      border-right: 2px solid var(--ink);
+    }
+    .esd-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blueprint);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: var(--blueprint-soft);
+      padding: 4px 10px;
+      border: 1px solid #bfdbfe;
+    }
+    .esd-main h1 {
+      font-size: clamp(28px, 3.8vw, 44px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+    }
+    .esd-main p {
+      font-size: 16px;
+      color: var(--ink-muted);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+    .esd-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .esd-guarantees {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+    .esd-guarantees div strong {
+      font-family: var(--mono);
+      font-size: 19px;
+      color: var(--blueprint);
+      display: block;
+    }
+    .esd-guarantees div span {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* Правая колонка ЕСКД со штампом */
+    .esd-drawing {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(to right, rgba(29,78,216,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29,78,216,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .drawing-area {
+      padding: 28px;
+      flex: 1;
+      display: grid;
+      place-items: center;
+    }
+    .gost-stamp {
+      border-top: 2px solid var(--ink);
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .gost-cell {
+      padding: 10px 12px;
+      border-right: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+    .gost-cell:nth-child(3n) { border-right: none; }
+    .gost-cell small {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+    .gost-cell strong {
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    /* Секции */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sec-head {
+      margin-bottom: 36px;
+    }
+    .sec-index {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blueprint);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .sec-title {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Каталог деталей с фильтром */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 9px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink-muted);
+      transition: all 0.15s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .part-card {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .part-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    .part-code { color: var(--blueprint); font-weight: 700; }
+    .part-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .part-card p { font-size: 14px; color: var(--ink-muted); margin-bottom: 18px; }
+    .part-meta {
+      background: var(--surface-alt);
+      padding: 10px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      flex: 1;
+      gap: 8px;
     }
-    .variant-card {
-      background: #131b29;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .variant-card:hover {
-      transform: translateY(-4px);
-    }
-    .variant-card.v1:hover { border-color: #ff6b00; }
-    .variant-card.v2:hover { border-color: #3b82f6; }
 
-    .preview-banner {
-      height: 220px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
+    /* Таблица */
+    .tech-table-wrap {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      overflow-x: auto;
     }
-    .v1 .preview-banner {
-      background: radial-gradient(circle at 80% 20%, rgba(255,107,0,0.22), transparent 60%), #0a0c10;
-      border-bottom: 1px solid rgba(255,107,0,0.3);
+    table.tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
     }
-    .v2 .preview-banner {
-      background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%);
-      color: #0f172a;
-      border-bottom: 2px solid #0f172a;
-    }
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
+    .tech-table th {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
       font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      width: fit-content;
-      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px 18px;
     }
-    .v1 .tag { background: rgba(255,107,0,0.15); color: #ff6b00; border: 1px solid #ff6b00; }
-    .v2 .tag { background: #1d4ed8; color: #fff; }
+    .tech-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tech-table tr:hover td { background: var(--blueprint-soft); }
+    .mono-badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--surface-alt);
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
 
-    .card-body {
-      padding: 28px;
-    }
-    .card-body h2 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-    .card-body p {
-      color: #94a3b8;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .feature-list {
-      list-style: none;
-      margin-bottom: 28px;
+    /* Блок контактов с картой */
+    .contact-layout {
       display: grid;
-      gap: 10px;
-      font-size: 14px;
-      color: #cbd5e1;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
     }
-    .feature-list li::before {
-      content: "✓ ";
-      font-weight: bold;
-      margin-right: 6px;
+    .contact-box {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      padding: 36px;
+      box-shadow: 6px 6px 0 var(--border);
     }
-    .v1 .feature-list li::before { color: #ff6b00; }
-    .v2 .feature-list li::before { color: #3b82f6; }
-
-    .btn-open {
-      display: block;
-      text-align: center;
-      padding: 14px 20px;
-      border-radius: 8px;
+    .contact-item {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blueprint);
       font-weight: 700;
-      text-decoration: none;
-      font-size: 15px;
-      transition: opacity 0.2s;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
     }
-    .btn-open:hover { opacity: 0.92; }
-    .v1 .btn-open { background: #ff6b00; color: #fff; }
-    .v2 .btn-open { background: #2563eb; color: #fff; }
+    .contact-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .map-frame-box {
+      border: 2px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--blueprint);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .map-header {
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .map-embed {
+      width: 100%;
+      height: 380px;
+      border: none;
+    }
+    .map-links {
+      padding: 12px 18px;
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-map {
+      padding: 6px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .btn-map:hover { background: var(--blueprint); color: #fff; border-color: var(--blueprint); }
 
-    @media (max-width: 860px) {
-      .cards-wrap { grid-template-columns: 1fr; }
+    /* Форма заказа */
+    .esd-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--border-strong);
+      font-family: var(--sans);
+      font-size: 14px;
+      margin-bottom: 12px;
+      background: var(--paper);
+    }
+    .esd-input:focus { outline: none; border-color: var(--blueprint); background: #fff; }
+
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 36px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    footer a { color: #f8fafc; text-decoration: none; }
+
+    @media (max-width: 960px) {
+      .esd-frame, .contact-layout { grid-template-columns: 1fr; }
+      .esd-main { border-right: none; border-bottom: 2px solid var(--ink); }
+      .parts-grid { grid-template-columns: 1fr 1fr; }
+      .nav-menu { display: none; }
+    }
+    @media (max-width: 640px) {
+      .parts-grid, .esd-guarantees { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="top-header">
-    <div>
-      <h1>Сайт-визитка для токарно-фрезерного цеха</h1>
-      <p>Выберите один из двух готовых вариантов дизайна для просмотра (внутри каждого сайта есть верхняя панель быстрого переключения)</p>
+
+  <!-- Верхняя строка реквизитов -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div>
+        <span>БИН: <strong>930740000018</strong></span>
+        <span style="margin: 0 10px;">|</span>
+        <span>г. Алматы, Жетысуский р-н, ул. Павлодарская, 7</span>
+      </div>
+      <div>
+        <span>Режим: <strong>Пн–Пт 08:00–17:00</strong> (Сб–Вс: выходной)</span>
+      </div>
     </div>
   </div>
 
-  <div class="cards-wrap">
-    <!-- Вариант 1 -->
-    <div class="variant-card v1">
-      <div>
-        <div class="preview-banner">
-          <span class="tag">ВАРИАНТ 01 // DARK CNC TECH</span>
-          <div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#ff6b00; margin-bottom:4px;">±0.005 ММ • ЧПУ ОБРАБОТКА</div>
-            <div style="font-size:24px; font-weight:800; color:#fff;">Индустриальный Брутализм</div>
-          </div>
+  <!-- Шапка -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-stamp">ТРУД</div>
+        <div class="logo-text">
+          <strong>ТОО «ТРУД»</strong>
+          <span>ПРОИЗВОДСТВО КРЕПЕЖА И МЕТАЛЛОИЗДЕЛИЙ • АЛМАТЫ</span>
         </div>
-        <div class="card-body">
-          <h2>Вариант 1: «МеталлРесурс ЧПУ» (Тёмный)</h2>
-          <p>
-            Современный контрастный стиль для высокотехнологичного цеха с ЧПУ. Тёмный графитовый фон, акценты цвета раскалённой стружки (#FF6B00), векторная CAD-визуализация вала в первом экране.
-          </p>
-          <ul class="feature-list">
-            <li>Интерактивный онлайн-калькулятор оценки партии и материала</li>
-            <li>Карточки станочного парка со статусами «В РАБОТЕ»</li>
-            <li>Акцент на срочное изготовление и реверс-инжиниринг по образцу</li>
-            <li>Форма быстрой отправки чертежа / фото детали</li>
-          </ul>
-        </div>
-      </div>
-      <div style="padding: 0 28px 28px;">
-        <a href="variant-1.html" class="btn-open">Открыть Вариант 1 (Industrial Dark) →</a>
-      </div>
-    </div>
+      </a>
 
-    <!-- Вариант 2 -->
-    <div class="variant-card v2">
-      <div>
-        <div class="preview-banner">
-          <span class="tag">ВАРИАНТ 02 // ГОСТ & ISO BLUEPRINT</span>
-          <div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#1d4ed8; font-weight:700; margin-bottom:4px;">КВАЛИТЕТ IT6–IT8 • ОТК 100%</div>
-            <div style="font-size:24px; font-weight:800; color:#0f172a;">Инженерное КБ (Светлый)</div>
-          </div>
+      <ul class="nav-menu">
+        <li><a href="#about">О предприятии</a></li>
+        <li><a href="#catalog">Номенклатура изделий</a></li>
+        <li><a href="#capabilities">Технические возможности</a></li>
+        <li><a href="#contacts">Контакты и карта</a></li>
+      </ul>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div style="text-align:right; font-family:var(--mono);">
+          <a href="tel:+77273847655" style="color:var(--ink); font-weight:700; text-decoration:none; font-size:16px;">+7 (727) 384-7655</a>
+          <small style="display:block; font-size:11px; color:#16a34a;">● Отдел приёма заказов</small>
         </div>
-        <div class="card-body">
-          <h2>Вариант 2: «ТОЧМАШ-Инжиниринг» (Светлый)</h2>
-          <p>
-            Строгий инженерный стиль конструкторского бюро и швейцарской точности. Чистый белый фон с миллиметровой сеткой, кобальтовый чертёжный синий (#1D4ED8) и оформление блоков в виде штампа ГОСТ (ЕСКД).
-          </p>
-          <ul class="feature-list">
-            <li>Интерактивный каталог деталей с фильтром по категориям (валы, втулки, шестерни)</li>
-            <li>Сводная таблица паспортных возможностей, квалитетов и склада сталей</li>
-            <li>Чертёж со штампом основной надписи ГОСТ и отметкой ОТК</li>
-            <li>Фокус на корпоративных B2B-заказчиков, главных инженеров и снабжение</li>
-          </ul>
-        </div>
-      </div>
-      <div style="padding: 0 28px 28px;">
-        <a href="variant-2.html" class="btn-open">Открыть Вариант 2 (Инженерное КБ) →</a>
+        <a href="#order" class="btn-esd btn-blue">Расчёт по чертежу</a>
       </div>
     </div>
-  </div>
+  </header>
+
+  <!-- Первый экран (Hero) -->
+  <section class="hero-esd" id="about">
+    <div class="container">
+      <div class="esd-frame">
+        <div class="esd-main">
+          <span class="esd-code">ПРОИЗВОДСТВЕННАЯ КОМПАНИЯ // БИН 930740000018</span>
+          <h1>Изготовление крепежа, резьбовых деталей и металлоконструкций на заказ в Алматы</h1>
+          <p>
+            ТОО «Труд» — промышленное предприятие полного цикла металлообработки. Серийно и под заказ производим фундаментные болты (ГОСТ 24379.1), резьбовые шпильки, гайки, штуцеры, фланцы, анкерные тяги и строительные металлоконструкции любой сложности по чертежам и образцам клиента.
+          </p>
+          <div class="esd-actions">
+            <a href="#order" class="btn-esd btn-blue">Отправить чертёж на расчёт</a>
+            <a href="#contacts" class="btn-esd btn-white">Контакты и схема проезда</a>
+          </div>
+          <div class="esd-guarantees">
+            <div>
+              <strong>ГОСТ и ТУ</strong>
+              <span>Сертификаты соответствия на металл и паспорт партии</span>
+            </div>
+            <div>
+              <strong>Любая серия</strong>
+              <span>От штучных ремонтных деталей до вагонных поставок</span>
+            </div>
+            <div>
+              <strong>НДС / Договор</strong>
+              <span>Официальный безналичный расчёт для юридических лиц</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="esd-drawing">
+          <div class="drawing-area">
+            <!-- Чертёж фундаментного болта ГОСТ 24379.1-2012 -->
+            <svg viewBox="0 0 420 260" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="20" y1="130" x2="400" y2="130" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="16 5 3 5"/>
+              <!-- Стержень болта с резьбой -->
+              <rect x="70" y="115" width="220" height="30" fill="rgba(29, 78, 216, 0.08)" stroke="#0f172a" stroke-width="2"/>
+              <!-- Резьбовые витки -->
+              <line x1="75" y1="115" x2="80" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="85" y1="115" x2="90" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="95" y1="115" x2="100" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="105" y1="115" x2="110" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="115" y1="115" x2="120" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="125" y1="115" x2="130" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <line x1="135" y1="115" x2="140" y2="145" stroke="#1d4ed8" stroke-width="1.5"/>
+              <!-- Изогнутый анкерный конец болта тип 1.1 -->
+              <path d="M290 115 H325 C345 115 360 130 360 150 V185 C360 205 345 220 325 220 H305" fill="none" stroke="#0f172a" stroke-width="28" stroke-linecap="round"/>
+              <!-- Размеры -->
+              <line x1="70" y1="90" x2="360" y2="90" stroke="#1d4ed8" stroke-width="1.2"/>
+              <line x1="70" y1="115" x2="70" y2="82" stroke="#1d4ed8" stroke-width="1"/>
+              <line x1="360" y1="140" x2="360" y2="82" stroke="#1d4ed8" stroke-width="1"/>
+              <text x="180" y="82" fill="#1d4ed8" font-family="IBM Plex Mono" font-weight="700" font-size="12">L = 800 ... 2200 мм</text>
+
+              <text x="75" y="166" fill="#dc2626" font-family="IBM Plex Mono" font-weight="600" font-size="12">Резьба М24–М90</text>
+            </svg>
+          </div>
+
+          <!-- Штамп ГОСТ -->
+          <div class="gost-stamp">
+            <div class="gost-cell">
+              <small>Предприятие</small>
+              <strong>ТОО «Труд» (Алматы)</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Изделие</small>
+              <strong>Болт ГОСТ 24379.1</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Сталь</small>
+              <strong>09Г2С / Ст3сп / 40Х</strong>
+            </div>
+            <div class="gost-cell">
+              <small>БИН</small>
+              <strong>930740000018</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Партия</small>
+              <strong>Любой объём</strong>
+            </div>
+            <div class="gost-cell">
+              <small>Контроль ОТК</small>
+              <strong style="color:#16a34a;">100% ПРИЁМКА</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Номенклатура продукции -->
+  <section id="catalog">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-index">// Производственная программа</span>
+        <h2 class="sec-title">Номенклатура выпускаемой продукции и услуг</h2>
+      </div>
+
+      <div class="filter-tabs" id="partTabs">
+        <button class="tab-btn active" data-cat="all">Вся номенклатура (6)</button>
+        <button class="tab-btn" data-cat="fasteners">Крепёж и анкеры</button>
+        <button class="tab-btn" data-cat="machining">Токарная обработка</button>
+        <button class="tab-btn" data-cat="structures">Металлоконструкции</button>
+      </div>
+
+      <div class="parts-grid" id="partsGrid">
+        <div class="part-card" data-cat="fasteners">
+          <div>
+            <div class="part-header">
+              <span class="part-code">ГОСТ 24379.1-2012</span>
+              <span>Строительный крепёж</span>
+            </div>
+            <h3>Фундаментные и анкерные болты</h3>
+            <p>Изготовление фундаментных болтов всех типов (изогнутые, с анкерной плитой, составные, прямые) диаметром от М16 до М90 из сталей Ст3, 09Г2С, 40Х. Комплектация гайками и шайбами.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Диапазон:</strong> М16 – М90</div>
+            <div><strong>Длина:</strong> до 3000 мм</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="fasteners">
+          <div>
+            <div class="part-header">
+              <span class="part-code">СПЕЦКРЕПЁЖ</span>
+              <span>Резьбовые изделия</span>
+            </div>
+            <h3>Шпильки, нестандартные болты и гайки</h3>
+            <p>Шпильки резьбовые для фланцевых соединений (ГОСТ 9066, ГОСТ 22032-22042), высокопрочные болты, стяжки, конические и трапецеидальные винты.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Класс прочности:</strong> 5.8, 8.8, 10.9</div>
+            <div><strong>Резьба:</strong> метрич., Tr, UNC</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="machining">
+          <div>
+            <div class="part-header">
+              <span class="part-code">ТОКАРНЫЙ ЦЕХ</span>
+              <span>По чертежам заказчика</span>
+            </div>
+            <h3>Токарная обработка деталей вращения</h3>
+            <p>Выточка валов, осей, роликов, пальцев, втулок, колец, шкивов и штуцеров. Нарезка наружной и внутренней резьбы, сверловка, расточка посадок под подшипники.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Габариты:</strong> Ø до 630 мм</div>
+            <div><strong>Точность:</strong> IT7 – IT9</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="machining">
+          <div>
+            <div class="part-header">
+              <span class="part-code">РЕЗЬБОВЫЕ УЗЛЫ</span>
+              <span>Трубопроводный крепёж</span>
+            </div>
+            <h3>Штуцеры, переходники, фланцы</h3>
+            <p>Фланцы нестандартные по чертежам, бочата, сгоны, резьбовые переходники для гидравлических систем, теплотрасс и промышленного оборудования.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Стали:</strong> Ст20, 09Г2С, 12Х18Н10Т</div>
+            <div><strong>Давление:</strong> до 25 МПа</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="structures">
+          <div>
+            <div class="part-header">
+              <span class="part-code">СЕРИЯ 1.400-15</span>
+              <span>Сварка и заготовка</span>
+            </div>
+            <h3>Закладные детали (МН, ЗД, МС)</h3>
+            <p>Производство закладных деталей для железобетонных конструкций: анкерные группы, пластины, косынки, опорные столики по типовым альбомам и индивидуальным КМД.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Лист:</strong> от 4 до 40 мм</div>
+            <div><strong>Покрытие:</strong> грунт ГФ, цинк</div>
+          </div>
+        </div>
+
+        <div class="part-card" data-cat="structures">
+          <div>
+            <div class="part-header">
+              <span class="part-code">МЕТАЛЛОКОНСТРУКЦИИ</span>
+              <span>На заказ в Алматы</span>
+            </div>
+            <h3>Строительные металлоизделия</h3>
+            <p>Сварка ферм, балок, колонн, рамных опор, ограждений, эстакад и нестандартных технологических металлоконструкций по техническому заданию заказчика.</p>
+          </div>
+          <div class="part-meta">
+            <div><strong>Контроль:</strong> ВИК / УЗК швов</div>
+            <div><strong>Доставка:</strong> по Алматы и РК</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Возможности цеха и металлы -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-index">// Производственный паспорт</span>
+        <h2 class="sec-title">Технические параметры обработки металла</h2>
+      </div>
+
+      <div class="tech-table-wrap">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Направление производства</th>
+              <th>Параметры и размеры</th>
+              <th>Нормативная база (ГОСТ / ТУ)</th>
+              <th>Используемые марки сталей</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Фундаментные болты</strong></td>
+              <td>Диаметр резьбы от М16 до М90, длина до 3000 мм</td>
+              <td><span class="mono-badge">ГОСТ 24379.1-2012 (типы 1, 2, 5, 6)</span></td>
+              <td>Ст3сп, Ст3пс, 09Г2С (северное исполнение), 40Х</td>
+            </tr>
+            <tr>
+              <td><strong>Токарно-винторезные работы</strong></td>
+              <td>Диаметр над станиной до Ø630 мм, РМЦ до 2000 мм</td>
+              <td><span class="mono-badge">Чертежи заказчика / образцы</span></td>
+              <td>Сталь 20, 35, 45, 40Х, нержавеющая 12Х18Н10Т</td>
+            </tr>
+            <tr>
+              <td><strong>Резьбовые соединения и шпильки</strong></td>
+              <td>Метрическая, дюймовая, трапецеидальная резьба</td>
+              <td><span class="mono-badge">ГОСТ 9066-75, ГОСТ 22032-22042</span></td>
+              <td>35Х, 40Х, 20Х13, 25Х1МФ, 09Г2С</td>
+            </tr>
+            <tr>
+              <td><strong>Закладные детали и металлоконструкции</strong></td>
+              <td>Раскрой листа, гибка, полуавтоматическая сварка</td>
+              <td><span class="mono-badge">Серия 1.400-15, ГОСТ 14098-2014</span></td>
+              <td>Листовой прокат, уголок, швеллер, балка, арматура А500С</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты и Интерактивная карта -->
+  <section id="contacts">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-index">// Локация и реквизиты</span>
+        <h2 class="sec-title">Контакты производства ТОО «Труд»</h2>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Блок контактов и реквизитов -->
+        <div class="contact-box">
+          <div class="contact-item">
+            <span class="contact-label">Юридическое наименование</span>
+            <div class="contact-val">ТОО «Труд»</div>
+            <div style="font-family:var(--mono); font-size:13px; color:var(--ink-muted); margin-top:2px;">
+              БИН: <strong>930740000018</strong>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-label">Адрес производства и склада</span>
+            <div class="contact-val">г. Алматы, Жетысуский район, ул. Павлодарская, дом 7</div>
+            <div style="font-size:13px; color:var(--ink-muted); margin-top:4px;">
+              Почтовый индекс: <strong>050014</strong> • Удобный заезд для грузового транспорта и длинномеров
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-label">Телефоны отдела приёма заказов</span>
+            <div class="contact-val">
+              <a href="tel:+77273847655" style="color:var(--blueprint); text-decoration:none;">+7 (727) 384-7655</a>
+            </div>
+            <div style="font-size:13px; color:var(--ink-muted); margin-top:2px;">
+              Звонки принимаются в рабочее время предприятия
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-label">График работы</span>
+            <div class="contact-val">Понедельник – пятница: с 08:00 до 17:00</div>
+            <div style="font-size:13px; color:#dc2626; margin-top:2px; font-weight:600;">
+              Суббота и воскресенье — выходные дни
+            </div>
+          </div>
+        </div>
+
+        <!-- Интерактивная карта с точкой на ул. Павлодарская, 7 -->
+        <div class="map-frame-box">
+          <div class="map-header">
+            <span>● КАРТА: г. Алматы, ул. Павлодарская, 7</span>
+            <span>050014 // ТОО «ТРУД»</span>
+          </div>
+
+          <!-- Встроенная карта OpenStreetMap с меткой -->
+          <iframe 
+            class="map-embed"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=76.9288%2C43.3185%2C76.9488%2C43.3305&amp;layer=mapnik&amp;marker=43.3245%2C76.9388"
+            loading="lazy"
+            title="Карта проезда ТОО Труд, Алматы, ул. Павлодарская 7">
+          </iframe>
+
+          <div class="map-links">
+            <span style="font-family:var(--mono); font-size:12px; align-self:center; font-weight:700;">Открыть маршрут:</span>
+            <a href="https://2gis.kz/almaty/firm/9429940000801443" target="_blank" rel="noopener" class="btn-map">2ГИС Алматы</a>
+            <a href="https://yandex.kz/maps/?text=Алматы+Павлодарская+7" target="_blank" rel="noopener" class="btn-map">Яндекс Карты</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Алматы+Павлодарская+7" target="_blank" rel="noopener" class="btn-map">Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма отправки чертежа -->
+  <section id="order" style="background:var(--surface);">
+    <div class="container">
+      <div style="max-width:760px; margin:0 auto; border:2px solid var(--ink); padding:40px; box-shadow:8px 8px 0 var(--blueprint); background:#fff;">
+        <span class="sec-index">// Онлайн-расчёт</span>
+        <h2 class="sec-title" style="margin-bottom:14px;">Отправить заявку или чертёж технологу</h2>
+        <p style="color:var(--ink-muted); margin-bottom:24px; font-size:15px;">
+          Заполните форму, укажите нужные изделия или прикрепите чертёж (PDF, DWG, DXF, фото). Инженеры ТОО «Труд» рассчитают стоимость и сроки производства.
+        </p>
+
+        <form onsubmit="event.preventDefault(); document.getElementById('orderNotice').style.display='block';">
+          <input type="text" class="esd-input" placeholder="Название организации / Ваше имя *" required />
+          <input type="tel" class="esd-input" placeholder="Контактный телефон (WhatsApp) *" required />
+          <textarea class="esd-input" rows="4" placeholder="Перечень изделий: марка стали, диаметры, ГОСТ, количество штук, требования к срокам..."></textarea>
+          <div style="border:2px dashed var(--border-strong); padding:14px; margin-bottom:16px; background:var(--paper); font-size:13px;">
+            📎 Прикрепить чертёж или спецификацию: <input type="file" style="margin-top:6px; display:block;" />
+          </div>
+          <button type="submit" class="btn-esd btn-blue" style="width:100%; font-size:15px;">Отправить заявку на производство</button>
+          <p id="orderNotice" style="display:none; margin-top:14px; color:#16a34a; font-family:var(--mono); font-size:14px; font-weight:700;">
+            ✓ Ваша заявка успешно передана в отдел расчёта ТОО «Труд». Мы свяжемся с вами в рабочее время (Пн–Пт с 08:00 до 17:00).
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <strong>ТОО «Труд»</strong> • БИН: 930740000018<br/>
+        г. Алматы, Жетысуский район, ул. Павлодарская, 7 (индекс 050014)<br/>
+        Телефон: +7 (727) 384-7655 • Пн–Пт 08:00–17:00
+      </div>
+      <div style="text-align:right;">
+        Производство крепежных, резьбовых изделий и металлоконструкций.<br/>
+        Все права защищены © 2026.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('#partTabs .tab-btn');
+    const cards = document.querySelectorAll('#partsGrid .part-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        cards.forEach(card => {
+          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
-
